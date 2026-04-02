@@ -1,12 +1,11 @@
+const pdfParse = require("pdf-parse");
 const mammoth = require("mammoth");
 
 class FileParserService {
   // Extract text from PDF buffer
   static async parsePDF(buffer) {
-    const { PDFParse } = await import("pdf-parse");
-    const parser = new PDFParse({ data: buffer });
-    const result = await parser.getText();
-    return result.text;
+    const data = await pdfParse(buffer);
+    return data.text;
   }
 
   // Extract text from DOCX buffer
