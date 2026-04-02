@@ -1,4 +1,4 @@
-const groq = require("../config/gemini.config");
+const getGroqClient = require("../config/gemini.config");
 const { buildPrompt } = require("../utils/promptBuilder");
 const { parseAIResponse } = require("../utils/responseParser");
 
@@ -6,6 +6,7 @@ class AIService {
   static async analyzeResume(resumeText) {
     const prompt = buildPrompt(resumeText);
 
+    const groq = getGroqClient();
     const result = await groq.chat.completions.create({
       messages: [{ role: "user", content: prompt }],
       model: "llama-3.3-70b-versatile",
