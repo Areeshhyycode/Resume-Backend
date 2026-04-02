@@ -2,7 +2,7 @@ const app = require("./src/app");
 const config = require("./src/config/env.config");
 const connectDB = require("./src/config/db.config");
 
-const PORT = config.port;
+const PORT = process.env.PORT || config.port;
 
 console.log("Starting AI Resume Analyzer Backend...");
 
